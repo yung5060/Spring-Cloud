@@ -1,0 +1,26 @@
+server:
+  port: 0
+
+spring:
+  application:
+    name: user-service
+  datasource:
+    driver-class-name: oracle.jdbc.driver.OracleDriver
+    url: jdbc:oracle:thin:@localhost:1521:xe
+    username: c##yung
+    password: 1234
+
+mybatis:
+  config-location: classpath:mybatis-config.xml
+
+eureka:
+  instance:
+    instanceId: ${spring.application.name}:${spring.application.instance_id:${random.value}}
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+
+greeting:
+  message: Welcome to simple E-Commerce app!
