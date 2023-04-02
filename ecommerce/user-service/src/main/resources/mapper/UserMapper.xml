@@ -3,11 +3,25 @@
 
 <mapper namespace="com.kbank.userservice.dao.UserMapper">
 
+    <resultMap id="userMap" type="com.kbank.userservice.entity.UserEntity">
+        <id property="id" column="id" />
+        <result property="email" column="email" />
+        <result property="name" column="name" />
+        <result property="userId" column="user_id" />
+        <result property="encryptedPwd" column="encrypted_pwd" />
+    </resultMap>
+
     <insert id="save" parameterType="com.kbank.userservice.entity.UserEntity">
         INSERT INTO users(email, name, user_id, encrypted_pwd)
         VALUES(#{email}, #{name}, #{userId}, #{encryptedPwd})
     </insert>
 
+    <select id="findAll" resultType="com.kbank.userservice.entity.UserEntity">
+        SELECT * FROM users
+    </select>
 
+    <select id="findByUserId" resultType="com.kbank.userservice.entity.UserEntity" parameterType="java.lang.String">
+        SELECT * FROM users WHERE user_id = #{userId}
+    </select>
 
 </mapper>
