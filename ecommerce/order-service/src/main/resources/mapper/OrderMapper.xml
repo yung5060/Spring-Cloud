@@ -3,21 +3,23 @@
 
 <mapper namespace="com.kbank.userservice.dao.UserMapper">
 
-    <resultMap id="catalogMap" type="com.kbank.catalogservice.entity.CatalogEntity">
+    <resultMap id="orderMap" type="com.kbank.orderservice.entity.OrderEntity">
         <id property="id" column="id" />
         <result property="productId" column="product_id" />
-        <result property="productName" column="product_name" />
-        <result property="stock" column="stock" />
+        <result property="qty" column="qty" />
         <result property="unitPrice" column="unit_price" />
+        <result property="totalPrice" column="total_price" />
+        <result property="userId" column="user_id" />
+        <result property="orderId" column="order_id" />
         <result property="createdAt" column="created_at" />
     </resultMap>
 
-    <select id="findAll" resultMap="catalogMap">
-        SELECT * FROM catalog
+    <select id="findByUserId" resultMap="orderMap" parameterType="java.lang.String">
+        SELECT * FROM orders WHERE user_id = #{userId}
     </select>
 
-    <select id="findByProductId" resultMap="catalogMap" parameterType="java.lang.String">
-        SELECT * FROM catalog WHERE product_id = #{productId}
+    <select id="findByOrderId" resultMap="orderMap" parameterType="java.lang.String">
+        SELECT * FROM orders WHERE order_id = #{orderId}
     </select>
 
     <!-- <select id="findByUserId" resultMap="userMap" parameterType="java.lang.String">
