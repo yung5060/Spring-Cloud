@@ -47,6 +47,8 @@ SELECT * FROM orders;
 --
 --TRUNCATE TABLE catalog;
 
+TRUNCATE TABLE ORDERS;
+
 
 INSERT INTO CATALOG(product_id, product_name, stock, unit_price)
 VALUES('CATALOG-0001', 'Berlin', 100, 1500);
