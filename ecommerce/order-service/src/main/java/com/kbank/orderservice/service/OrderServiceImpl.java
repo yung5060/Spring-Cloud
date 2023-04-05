@@ -26,18 +26,27 @@ public class OrderServiceImpl implements OrderService {
         mapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
         OrderEntity orderEntity = mapper.map(orderDto, OrderEntity.class);
 
-        orderMapper.save(OrderEntity);
+        orderMapper.save(orderEntity);
 
-        return null;
+        OrderDto returnDto = mapper.map(orderMapper.findByOrderId(orderDto.getOrderId()), OrderDto.class);
+
+        return returnDto;
     }
 
     @Override
     public OrderDto getOrderByOrderId(String orderId) {
-        return null;
+        OrderEntity orderEntity = orderMapper.findByOrderId(orderId);
+
+        ModelMapper mapper = new ModelMapper();
+        mapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
+
+        OrderDto returnDto = mapper.map(orderEntity, OrderDto.class);
+        
+        return returnDto;
     }
 
     @Override
     public List<OrderEntity> getOrdersByUserId(String userId) {
-        return null;
+        return orderMapper.findByUserId(userId);
     }
 }

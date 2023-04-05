@@ -18,11 +18,18 @@ public class OrderMapper {
         return result;
     }
 
-    public OrderEntity findByProductId(String orderId) {
+    public OrderEntity findByOrderId(String orderId) {
         SqlSession session = MyBatisUtil.getSqlSession();
         OrderEntity result = session.selectOne("findByOrderId", orderId);
         session.commit();
         session.close();
         return result;
+    }
+
+    public void save(OrderEntity orderEntity) {
+        SqlSession session = MyBatisUtil.getSqlSession();
+        session.insert("save", orderEntity);
+        session.commit();
+        session.close();
     }
 }

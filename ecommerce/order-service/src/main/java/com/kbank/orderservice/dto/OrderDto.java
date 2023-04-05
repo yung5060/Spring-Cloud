@@ -2,6 +2,8 @@ package com.kbank.orderservice.dto;
 
 import lombok.Data;
 
+import java.sql.Date;
+
 @Data
 public class OrderDto {
 
@@ -12,4 +14,6 @@ public class OrderDto {
 
     private String orderId;
     private String userId;
+
+    private Date createdAt;
 }

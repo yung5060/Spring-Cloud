@@ -22,6 +22,11 @@
         SELECT * FROM orders WHERE order_id = #{orderId}
     </select>
 
+    <insert id="save" parameterType="com.kbank.orderservice.entity.OrderEntity">
+        INSERT INTO orders (product_id, qty, unit_price, total_price, user_id, order_id)
+        VALUES (#{productId}, #{qty}, #{unitPrice}, #{totalPrice}, #{userId}, #{orderId})
+    </insert>
+
     <!-- <select id="findByUserId" resultMap="userMap" parameterType="java.lang.String">
         SELECT * FROM users WHERE user_id = #{userId}
     </select> -->
